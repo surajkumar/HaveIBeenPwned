@@ -13,17 +13,17 @@ public class HaveIBeenPwned {
     private static final String API_URL = "https://api.pwnedpasswords.com/range/";
 
     public static boolean pwned(String password) {
-        var hashed = sha1(password.getBytes());
+        String hashed = sha1(password.getBytes());
         if (hashed != null) {
             try {
-                var sb = new StringBuilder();
-                var url = new URL(API_URL + hashed.substring(0, 5));
-                var http = (HttpURLConnection) url.openConnection();
+                StringBuilder sb = new StringBuilder();
+                URL url = new URL(API_URL + hashed.substring(0, 5));
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.setRequestMethod("GET");
                 http.setDoOutput(true);
                 if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    try (var reader = new BufferedReader(new InputStreamReader(http.getInputStream(), StandardCharsets.UTF_8))) {
-                        var read = 0;
+                    try (BufferedReader reader = new BufferedReader(new InputStreamReader(http.getInputStream(), StandardCharsets.UTF_8))) {
+                        int read = 0;
                         while ((read = reader.read()) >= 0) {
                             sb.append((char) read);
                         }
@@ -39,8 +39,8 @@ public class HaveIBeenPwned {
 
     public static boolean accountPwned(String username) {
         try {
-            var url = new URL("https://haveibeenpwned.com/api/v3/breachedaccount/" + username);
-            var http = (HttpURLConnection) url.openConnection();
+            URL url = new URL("https://haveibeenpwned.com/api/v3/breachedaccount/" + username);
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
             http.setRequestMethod("GET");
             http.setDoOutput(true);
             return http.getResponseCode() == HttpURLConnection.HTTP_OK;
