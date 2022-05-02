@@ -21,4 +21,4 @@ It is our duty as business owners and developers to ensure that users using our 
 ## Contributing
 Contributions are welcome whether it is for small bug fixes or new pieces of major functionality. To contribute changes, you should first fork the upstream repository to your own GitHub account. You can then add a new remote for `upstream` and rebase any changes you make and keep up-to-date with the upstream.
 
-`git remote add upstream https://github.com/surajkumar/PBKDF2WithHmacSHA512.git`
+`git remote add upstream https://github.com/surajkumar/HaveIBeenPwned.git`
